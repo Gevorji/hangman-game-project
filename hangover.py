@@ -1,32 +1,25 @@
 class Hangover:
-    body_art = open('body_art.txt', encoding='utf-8').readlines()
-    def __init__(self):
-        self.process_frames()
-        self.restart()
+    def __init__(self, max_failures):
+        self.max_failures = max_failures
+        self.restart_self()
 
-    def draw_a_part(self):
-        try:
-            return next(self.frame_producer)
-        except StopIteration:
-            self.game_over= True
+    def add_one_part(self):
+        if not self.its_gameover:
+            self.alive_parts_counter -= 1
+        if self.alive_parts_counter == 0:
+            self.its_gameover = True
 
-    def restart(self):
-        self.frame_producer = (frame for frame in self.frames)
-        self.game_over = False
-    def process_frames(self):
-        self.frames = []
-        frame = []
-        for line in self.body_art:
-            if line == 'delim\n':
-                frame = ''.join(frame)
-                self.frames.append(frame)
-                frame = []
-            else:
-                frame.append(line)
+    def restart_self(self):
+        self.alive_parts_counter = self.max_failures
+        self.its_gameover = False
+
+
 
 
 if __name__ == '__main__':
-    h = Hangover()
-    while not h.game_over:
-        print(h.draw_a_part())
+    h = Hangover(6)
+    while not h.its_gameover:
+        print('One step closer to be hanged')
+        h.add_one_part()
+
 
