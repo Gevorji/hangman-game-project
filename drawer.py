@@ -19,6 +19,7 @@ class Drawer:
     def draw_a_frame(self):
         if self.frame_counter > len(self.frames)-1:
             self.frame_counter = 0
+            print(self.frames[self.frame_counter])
         else:
             print(self.frames[self.frame_counter])
             self.frame_counter += 1
