@@ -24,6 +24,10 @@ class Drawer:
             print(self.frames[self.frame_counter])
             self.frame_counter += 1
 
+    def draw_a_frozen_frame(self):
+        frame_idx = self.frame_counter if self.frame_counter == 0 else self.frame_counter - 1
+        print(self.frames[frame_idx])
+
 
 if __name__ == '__main__':
     frames_file = open('body_art.txt', encoding='utf-8')
