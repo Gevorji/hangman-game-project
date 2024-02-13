@@ -34,11 +34,6 @@ class Opponent:
                 positions.append(i)
         return positions
 
-    def restart(self):
-        self.make_a_word()
-        self.word_is_guessed = False
-        self.guessed_chars = set()
-
 
 if __name__ == '__main__':
     opp = Opponent(['оса', 'коса', 'сосиска'])

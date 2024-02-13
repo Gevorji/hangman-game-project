@@ -2,9 +2,6 @@ class Table:
     def __init__(self, places_numb):
         self.table_state = {k: ' ' for k in range(places_numb)}
 
-    def restart(self):
-        self.table_state = {}
-
     def put_a_char(self, char, where):
         self.table_state[where] = char
 
