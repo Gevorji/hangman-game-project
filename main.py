@@ -3,7 +3,7 @@ import os
 import sys
 from functools import partial
 import time
-from hangover import Hangover
+from hangman import Hangman
 from opponent import Opponent
 from table import Table
 
@@ -81,9 +81,8 @@ def end():
 def main():
     os.system('cls')
     word_pool = json.load(open('russian_nouns_prepared.json', encoding='utf-8'))
-    word_pool = ['къуайса']
     animation_frames = open('body_art.txt', encoding='utf-8')
-    hangover = Hangover(6, process_frames(animation_frames))
+    hangover = Hangman(6, process_frames(animation_frames))
     opponent = Opponent(word_pool)
     table = Table(len(opponent.word))
     entered_chars = []
@@ -116,7 +115,7 @@ def main():
             answer = get_valid_input([partial(is_in_collection, collection=['y', 'n'])],
                                      '','Try again (y/n): ', frame_changer)
         case False:
-            frame_changer(msg_part='You lost! But you can try again though! (y/n): ')
+            frame_changer(msg_part=f'You lost! It was {opponent.word[:-1]}. But you can try again though! (y/n): ')
             answer = get_valid_input([partial(is_in_collection, collection=['y', 'n'])],
                                      '', 'Try again (y/n): ', frame_changer)
     match answer:

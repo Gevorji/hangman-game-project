@@ -1,4 +1,4 @@
-class Hangover:
+class Hangman:
     def __init__(self, max_failures, animation_frames):
         self.max_failures = max_failures
         self.animation_frames = animation_frames
@@ -31,7 +31,7 @@ if __name__ == '__main__':
             else:
                 frame.append(line)
         return frames
-    h = Hangover(6,process_frames(frames))
+    h = Hangman(6, process_frames(frames))
     print(h.display())
     while not h.its_gameover:
         h.add_one_part()
